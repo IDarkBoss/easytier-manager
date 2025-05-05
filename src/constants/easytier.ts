@@ -11,8 +11,8 @@ export const NSSM_NAME = 'nssm'
  */
 export const CONFIG_FILE_NAME = 'data.json'
 export const USER_AGENT =
-  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.6261.95 Safari/537.36'
-export const PROXY_URL = 'http://web-proxy.cheng.us.kg/'
+  'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:138.0) Gecko/20100101 Firefox/138.0'
+export const PROXY_URL = 'https://ghproxy.cfd/'
 export const COOKIE_VALUE = '83077fe7-9171-43f9-906a-f7b95096db66'
 export const MONITOR_LIST = 'http://easytier.cheng.us.kg/api/getMonitorList'
 export const CORE_INFO_API = 'https://api.github.com/repos/EasyTier/EasyTier/releases'
@@ -25,31 +25,11 @@ export const EASYTIER_NAME = '/easytier-<%= osType %>-<%= osArch %>-<%= version 
 
 export const GITHUB_MIRROR_URL = [
   {
-    value: 'https://gh-proxy.com/',
-    label: 'https://gh-proxy.com/'
-  },
-  {
-    value: 'https://ghproxy.cn/',
-    label: 'https://ghproxy.cn/'
-  },
-  {
     value: 'https://ghproxy.net/',
     label: 'https://ghproxy.net/'
   },
   {
-    value: 'https://ghproxy.cc/',
-    label: 'https://ghproxy.cc/'
-  },
-  {
-    value: 'https://github.store/',
-    label: 'https://github.store/'
-  },
-  {
-    value: 'https://github.site/',
-    label: 'https://github.site/'
-  },
-  {
-    value: 'https://github.boki.moe/',
-    label: 'https://github.boki.moe/'
+    value: 'https://ghproxy.cfd/',
+    label: 'https://ghproxy.cfd/'
   }
 ]

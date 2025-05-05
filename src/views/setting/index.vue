@@ -347,7 +347,7 @@ onMounted(async () => {
           &emsp;Github加速链接
           <el-input
             type="text"
-            placeholder="例如:https://ghproxy.cn"
+            placeholder="例如:https://ghproxy.cfd"
             v-model="mirrorUrlSelect"
             style="width: 45%; margin-left: 2px"
             clearable

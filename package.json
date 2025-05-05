@@ -14,7 +14,7 @@
     "dev": "vite --mode base",
     "tauri": "tauri",
     "tauri:build": "pnpm tauri build",
-    "td": "pnpm tauri dev",
+    "td": "gsudo pnpm tauri dev",
     "tbd": "pnpm tauri build --debug",
     "ts:check": "vue-tsc --noEmit --skipLibCheck",
     "build": "vite build --mode pro",
@@ -153,5 +153,6 @@
   "bugs": {
     "url": "https://github.com/xlc520/easytier-manager/issues"
   },
-  "homepage": "https://github.com/xlc520/easytier-manager"
+  "homepage": "https://github.com/xlc520/easytier-manager",
+  "packageManager": "pnpm@10.10.0+sha512.d615db246fe70f25dcfea6d8d73dee782ce23e2245e3c4f6f888249fb568149318637dca73c2c5c8ef2a4ca0d5657fb9567188bfab47f566d1ee6ce987815c39"
 }

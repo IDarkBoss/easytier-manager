@@ -1,9 +1,9 @@
-import { CONFIG_PATH, LOG_PATH, NSSM_NAME, RESOURCE_PATH } from '@/constants/easytier'
+import { CONFIG_PATH, NSSM_NAME } from '@/constants/easytier'
 import { invoke } from '@tauri-apps/api/core'
 import { join, resourceDir } from '@tauri-apps/api/path'
 import { attachConsole, error, info } from '@tauri-apps/plugin-log'
 import { Command, type SpawnOptions } from '@tauri-apps/plugin-shell'
-import { getCliDir, getCoreDir, getResourceDir, fileExist, getLogsDir } from './fileUtil'
+import { getCliDir, getCoreDir, getResourceDir } from './fileUtil'
 import { getPlatform, sleep } from './sysUtil'
 
 // 启用 TargetKind::Webview 后，这个函数将把日志打印到浏览器控制台
@@ -29,8 +29,8 @@ export async function executeCmd(
   options: SpawnOptions = {}
 ): Promise<any> {
   try {
-    // info('执行命令：' + program)
-    // info('执行参数：' + JSON.stringify(args))
+    // await info('执行命令：' + program)
+    // await info('执行参数：' + JSON.stringify(args))
     // 创建命令实例
     const command = Command.create(program, args, {
       cwd: options.cwd,
@@ -45,7 +45,7 @@ export async function executeCmd(
     }
     return output.stdout.trim() || output
   } catch (e: any) {
-    error('执行程序失败:' + JSON.stringify(e))
+    await error('执行程序失败:' + JSON.stringify(e))
     throw e
   }
 }
@@ -206,12 +206,12 @@ export async function killProcess(pid: number, force: boolean = true): Promise<b
     // Windows 使用 taskkill 命令
     if (platform === 'windows') {
       const args = force ? ['/F', '/PID', pid.toString()] : ['/PID', pid.toString()]
-      const _result = await executeCmd('taskkill', args, { encoding: 'gbk' })
+      await executeCmd('taskkill', args, { encoding: 'gbk' })
     }
     // Unix-like 系统使用 kill 命令
     else {
       const signal = force ? '-9' : '-15' // SIGKILL vs SIGTERM
-      const _result = await executeCmd('kill', [signal, pid.toString()])
+      await executeCmd('kill', [signal, pid.toString()])
     }
     info(`进程 ${pid} 已终止`)
     return true
@@ -347,7 +347,7 @@ export const getRunningProcesses = async (
  * @returns Promise<boolean> 是否存在
  */
 export const checkServiceOnWindows = (serviceName: string): Promise<any> => {
-  return new Promise(async (resolve, reject) => {
+  return new Promise(async (resolve) => {
     try {
       const args = ['status', serviceName]
       const res: any = await executeCmd(NSSM_NAME, args, { encoding: 'gbk' })
@@ -382,7 +382,7 @@ nssm processes <servicename> # 显示服务关联的进程
  * @returns Promise<boolean> 是否成功
  */
 export const installServiceOnWindows = async (serviceName: string, args: string) => {
-  return new Promise(async (resolve, reject) => {
+  return new Promise(async (resolve) => {
     const appDirectory = await getResourceDir()
     const corePath = await join(appDirectory, 'easytier-core')
     // const logsPath = await getLogsDir()
@@ -446,7 +446,7 @@ export const installServiceOnWindows = async (serviceName: string, args: string)
  * @returns Promise<boolean> 是否成功
  */
 export const uninstallServiceOnWindows = (serviceName: string) => {
-  return new Promise(async (resolve, reject) => {
+  return new Promise(async (resolve) => {
     try {
       const args = ['remove', serviceName, 'confirm']
       const res: any = await executeCmd(NSSM_NAME, args, { encoding: 'gbk' })
@@ -468,7 +468,7 @@ export const uninstallServiceOnWindows = (serviceName: string) => {
  * @returns Promise<boolean> 是否成功
  */
 export const startServiceOnWindows = (serviceName: string) => {
-  return new Promise(async (resolve, reject) => {
+  return new Promise(async (resolve) => {
     try {
       const args = ['start', serviceName]
       await executeCmd(NSSM_NAME, args, { encoding: 'gbk' })
@@ -496,7 +496,7 @@ export const startServiceOnWindows = (serviceName: string) => {
  * @returns Promise<boolean> 是否成功
  */
 export const stopServiceOnWindows = (serviceName: string) => {
-  return new Promise(async (resolve, reject) => {
+  return new Promise(async (resolve) => {
     try {
       const args = ['stop', serviceName]
       await executeCmd(NSSM_NAME, args, { encoding: 'gbk' })

@@ -5,9 +5,9 @@
   "identifier": "easytier-manager-pro",
   "build": {
     "frontendDist": "../dist",
-    "devUrl": "http://localhost:4000",
-    "beforeDevCommand": "pnpm dev",
-    "beforeBuildCommand": "pnpm build"
+    "devUrl": "http://localhost:24000",
+    "beforeDevCommand": "yarn dev",
+    "beforeBuildCommand": "yarn build"
   },
   "app": {
     "windows": [

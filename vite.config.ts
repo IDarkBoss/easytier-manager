@@ -153,7 +153,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       // cssTarget: ['chrome31']
     },
     server: {
-      port: 4000,
+      port: 24000,
       host: '0.0.0.0',
       proxy: {
         // 选项写法

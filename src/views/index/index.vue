@@ -205,7 +205,7 @@ const getPeerInfo = async () => {
     const data = toml.parse(temp)
     const res = await runEasyTierCli([
       '-p',
-      (data.rpc_portal as String).replace('0.0.0.0', '127.0.0.1'),
+      (data.rpc_portal as string).replace('0.0.0.0', '127.0.0.1'),
       'peer'
     ])
     if (res === 403) {

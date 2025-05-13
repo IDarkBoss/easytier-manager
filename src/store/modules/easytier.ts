@@ -3,7 +3,9 @@ import { resourceDir } from '@tauri-apps/api/path'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import { fetch } from '@tauri-apps/plugin-http'
+import { error } from '@tauri-apps/plugin-log'
 import dayjs from 'dayjs'
+import axios from 'axios'
 
 export const useEasyTierStore = defineStore(
   'easytier',
@@ -113,7 +115,7 @@ export const useEasyTierStore = defineStore(
       const isGet = JSON.parse(localStorage.getItem('releaseInfoIsGet') || defaultStatus)
       const date = dayjs().format('YYYYMMDD').toString()
 
-      if ((isGet.data !== date && isGet.status === 'false') || releaseInfo.value.length === 0) {
+      if ((isGet.date !== date && isGet.status === 'false') || releaseInfo.value.length === 0) {
         try {
           // 首先尝试使用 PROXY_URL
           const response = await fetch(PROXY_URL + CORE_INFO_API, {
@@ -122,17 +124,16 @@ export const useEasyTierStore = defineStore(
             connectTimeout: 30000
           })
           releaseInfo.value = await response.json()
-        } catch (error) {
+        } catch (e) {
           // 如果使用 PROXY_URL 失败，直接尝试原始 URL
           try {
-            const response = await fetch(CORE_INFO_API, {
-              method: 'GET',
+            const response = await axios.get(CORE_INFO_API, {
               headers: { 'User-Agent': USER_AGENT },
-              connectTimeout: 30000
+              timeout: 30000
             })
-            releaseInfo.value = await response.json()
-          } catch (error) {
-            console.error('获取发布信息失败:', error)
+            releaseInfo.value = response.data
+          } catch (e) {
+            await error('获取发布信息失败: ' + e)
             releaseInfo.value = localRes
             return releaseInfo.value
           }

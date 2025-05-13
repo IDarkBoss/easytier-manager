@@ -7,15 +7,14 @@
     "name": "cheng",
     "email": "xulinch@88.com"
   },
-  "private": false,
   "type": "module",
   "scripts": {
-    "i": "pnpm install",
+    "i": "yarn install",
     "dev": "vite --mode base",
     "tauri": "tauri",
-    "tauri:build": "pnpm tauri build",
-    "td": "gsudo pnpm tauri dev",
-    "tbd": "pnpm tauri build --debug",
+    "tauri:build": "yarn tauri build",
+    "td": "gsudo yarn tauri dev",
+    "tbd": "yarn tauri build --debug",
     "ts:check": "vue-tsc --noEmit --skipLibCheck",
     "build": "vite build --mode pro",
     "build:pro": "vite build --mode pro",
@@ -26,21 +25,21 @@
     "serve:dev": "vite preview --mode dev",
     "serve:test": "vite preview --mode test",
     "npm:check": "pnpx npm-check-updates -u",
-    "clean": "pnpx rimraf node_modules",
-    "clean:cache": "pnpx rimraf node_modules/.cache",
+    "clean": "npx rimraf node_modules",
+    "clean:cache": "npx rimraf node_modules/.cache",
     "lint:eslint": "eslint . --fix \"src/**/*.{js,ts,tsx,vue,html}\"",
     "lint:format": "prettier --write --loglevel warn \"src/**/*.{js,ts,json,tsx,css,less,vue,html,md}\"",
     "lint:style": "stylelint --fix \"**/*.{vue,less,postcss,css,scss}\" --cache --cache-location node_modules/.cache/stylelint/",
     "lint:lint-staged": "lint-staged -c ./.husky/lintstagedrc.cjs",
     "prepare": "husky",
     "icon": "esno ./scripts/icon.ts",
-    "tauri:icon": "pnpm tauri icon",
-    "build:tauri": "pnpm tauri build",
-    "build:win64": "pnpm tauri build --target x86_64-pc-windows-msvc",
-    "build:win32": "pnpm tauri build --target i686-pc-windows-msvc",
-    "build:winarm64": "pnpm tauri build --target aarch64-pc-windows-msvc",
-    "build:mac": "pnpm tauri build --target aarch64-apple-darwin",
-    "build:linux": "pnpm tauri build --target x86_64-unknown-linux-gnu"
+    "tauri:icon": "yarn tauri icon",
+    "build:tauri": "yarn tauri build",
+    "build:win64": "yarn tauri build --target x86_64-pc-windows-msvc",
+    "build:win32": "yarn tauri build --target i686-pc-windows-msvc",
+    "build:winarm64": "yarn tauri build --target aarch64-pc-windows-msvc",
+    "build:mac": "yarn tauri build --target aarch64-apple-darwin",
+    "build:linux": "yarn tauri build --target x86_64-unknown-linux-gnu"
   },
   "dependencies": {
     "@tauri-apps/api": "^2.1.1",
@@ -55,6 +54,7 @@
     "@zxcvbn-ts/core": "^3.0.4",
     "animate.css": "^4.1.1",
     "axios": "^1.7.9",
+    "core-js": "^3.42.0",
     "cropperjs": "^1.6.2",
     "dayjs": "^1.11.13",
     "driver.js": "^1.3.1",
@@ -66,8 +66,8 @@
     "mitt": "^3.0.1",
     "monaco-editor": "^0.52.2",
     "nprogress": "^0.2.0",
-    "pinia": "^2.3.0",
-    "pinia-plugin-persistedstate": "^4.2.0",
+    "pinia": "^3.0.2",
+    "pinia-plugin-persistedstate": "^4.3.0",
     "qrcode": "^1.5.4",
     "qs": "^6.13.1",
     "smol-toml": "^1.3.1",
@@ -130,7 +130,7 @@
     "typescript": "5.5.4",
     "typescript-eslint": "^7.18.0",
     "unocss": "^0.64.1",
-    "vite": "5.4.10",
+    "vite": "5.4.19",
     "vite-plugin-ejs": "^1.7.0",
     "vite-plugin-eslint": "^1.8.1",
     "vite-plugin-progress": "^0.0.7",
@@ -142,8 +142,8 @@
     "vue-tsc": "^2.2.0"
   },
   "engines": {
-    "node": ">=18.0.0",
-    "pnpm": ">=8.1.0"
+    "node": ">=18.12.0",
+    "yarn": ">=4.6.0"
   },
   "license": "MIT",
   "repository": {
@@ -153,6 +153,5 @@
   "bugs": {
     "url": "https://github.com/xlc520/easytier-manager/issues"
   },
-  "homepage": "https://github.com/xlc520/easytier-manager",
-  "packageManager": "pnpm@10.10.0+sha512.d615db246fe70f25dcfea6d8d73dee782ce23e2245e3c4f6f888249fb568149318637dca73c2c5c8ef2a4ca0d5657fb9567188bfab47f566d1ee6ce987815c39"
+  "homepage": "https://github.com/xlc520/easytier-manager"
 }

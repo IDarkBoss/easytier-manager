@@ -12,7 +12,7 @@ const props = withDefaults(
     language?: string
     themeSelector?: boolean
     theme?: string
-    editorOption?: Object
+    editorOption?: object
     modelValue: string
     readOnly?: boolean // 是否只读 取值 true | false
     wordWrap?: string // 开启自动换行 取值 off | on
